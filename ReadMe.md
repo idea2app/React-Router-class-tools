@@ -6,6 +6,8 @@
 
 [![NPM](https://nodei.co/npm/react-router-class-tools.png?downloads=true&downloadRank=true&stars=true)][3]
 
+[![Demo](https://codesandbox.io/static/img/play-codesandbox.svg)][4]
+
 ## Feature
 
 -   [x] `withRouter()` function
@@ -16,6 +18,31 @@
 -   [x] `this.props.match`
 -   [ ] Static Context
 -   [x] `this.props.query`: the missing **Query object**
+
+## Usage
+
+```tsx
+import { PureComponent } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-class-tools';
+
+export default withRouter(
+    class RoutePage extends PureComponent<
+        RouteComponentProps<{ id: string }, {}, { extra: number }>
+    > {
+        render() {
+            const { id } = this.props.match.params,
+                { extra } = this.props.query;
+
+            return (
+                <ul>
+                    <li>ID: {id}</li>
+                    <li>extra: {extra}</li>
+                </ul>
+            );
+        }
+    }
+);
+```
 
 ## Reference
 
@@ -30,3 +57,4 @@
 [1]: https://reactrouter.com/
 [2]: https://github.com/idea2app/React-Router-class-tools/actions/workflows/main.yml
 [3]: https://nodei.co/npm/react-router-class-tools/
+[4]: https://codesandbox.io/s/react-class-router-1y99mv
