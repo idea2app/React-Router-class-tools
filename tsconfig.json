@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "UMD",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "declaration": true,
+        "lib": ["ES2021", "DOM"],
+        "outDir": "dist/"
+    },
+    "include": ["source/*"],
+    "typedocOptions": {
+        "name": "React Router class tools",
+        "excludeExternals": true,
+        "excludePrivate": true,
+        "readme": "./ReadMe.md",
+        "out": "docs/"
+    }
+}
