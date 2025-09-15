@@ -29,9 +29,14 @@ https://idea2app.github.io/React-Router-class-tools/preview/
 import { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
 
-class RoutePage extends PureComponent<
-    RouteComponentProps<{ id: string }, {}, { extra: number }>
-> {
+type RoutePageProps = RouteComponentProps<
+    { id: string },
+    {},
+    { extra: number }
+>;
+
+@withRouter
+export class RoutePage extends PureComponent<RoutePageProps> {
     render() {
         const { id } = this.props.match.params,
             { extra } = this.props.query;
@@ -44,7 +49,6 @@ class RoutePage extends PureComponent<
         );
     }
 }
-export default withRouter(RoutePage);
 ```
 
 ## Reference
