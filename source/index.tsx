@@ -91,7 +91,7 @@ export const withRouter = <
     Class: C,
     context?: ClassDecoratorContext<C>
 ) =>
-    class ComponentWithRouter extends (Class as Constructor<Component<P>>) {
+    class ComponentWithRouter extends (Class as Constructor<Component<P>> & C) {
         static WrappedComponent = Class;
         static displayName = `withRouter(${Class.displayName || Class.name})`;
 

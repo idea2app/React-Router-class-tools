@@ -4,6 +4,8 @@ import { RouteComponentProps, withRouter } from '../../../source';
 
 @withRouter
 export class PageWithRouterDecorator extends Component<RouteComponentProps> {
+    someMethod() {}
+
     render() {
         const { location, match, query } = this.props;
 
