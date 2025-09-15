@@ -10,14 +10,14 @@
 
 ## Feature
 
--   [x] `withRouter()` function
--   [ ] `withRouter()` decorator
--   [x] `RouteComponentProps`
--   [ ] `this.props.history`
--   [x] `this.props.location`
--   [x] `this.props.match`
--   [ ] Static Context
--   [x] `this.props.query`: the missing **Query object**
+- [x] `withRouter()` function
+- [ ] `withRouter()` decorator
+- [x] `RouteComponentProps`
+- [ ] `this.props.history`
+- [x] `this.props.location`
+- [x] `this.props.match`
+- [ ] Static Context
+- [x] `this.props.query`: the missing **Query object**
 
 ## Usage
 
@@ -25,23 +25,22 @@
 import { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
 
-export default withRouter(
-    class RoutePage extends PureComponent<
-        RouteComponentProps<{ id: string }, {}, { extra: number }>
-    > {
-        render() {
-            const { id } = this.props.match.params,
-                { extra } = this.props.query;
+class RoutePage extends PureComponent<
+    RouteComponentProps<{ id: string }, {}, { extra: number }>
+> {
+    render() {
+        const { id } = this.props.match.params,
+            { extra } = this.props.query;
 
-            return (
-                <ul>
-                    <li>ID: {id}</li>
-                    <li>extra: {extra}</li>
-                </ul>
-            );
-        }
+        return (
+            <ul>
+                <li>ID: {id}</li>
+                <li>extra: {extra}</li>
+            </ul>
+        );
     }
-);
+}
+export default withRouter(RoutePage);
 ```
 
 ## Reference
