@@ -4,7 +4,7 @@
         "module": "UMD",
         "moduleResolution": "Node",
         "esModuleInterop": true,
-        "jsx": "react",
+        "jsx": "react-jsx",
         "declaration": true,
         "skipLibCheck": true,
         "lib": ["ES2021", "DOM"],

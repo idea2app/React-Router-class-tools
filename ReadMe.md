@@ -8,10 +8,14 @@
 
 [![Demo](https://codesandbox.io/static/img/play-codesandbox.svg)][4]
 
+## Preview
+
+https://idea2app.github.io/React-Router-class-tools/preview/
+
 ## Feature
 
 - [x] `withRouter()` function
-- [ ] `withRouter()` decorator
+- [x] `withRouter()` decorator
 - [x] `RouteComponentProps`
 - [ ] `this.props.history`
 - [x] `this.props.location`
