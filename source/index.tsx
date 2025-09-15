@@ -30,27 +30,55 @@ export interface RouteComponentProps<
 
 /**
  * @see https://v5.reactrouter.com/web/api/withRouter
+ *
+ * Can be used as either:
+ * 1. HOC: const Enhanced = withRouter(MyComponent)
+ * 2. Decorator: @withRouter class MyComponent extends Component {...}
  */
-export function withRouter(
-    Class: Constructor<
+export function withRouter<
+    T extends Constructor<
         Component<RouteComponentProps> | PureComponent<RouteComponentProps>
     >
-) {
-    return () => {
-        const location = useLocation(),
-            params = useParams();
+>(Class: T): T {
+    // Create enhanced class constructor that injects router props
+    const EnhancedClass = class extends (Class as any) {
+        static displayName = `withRouter(${Class.name || 'Component'})`;
 
-        const { pathname = '/', search = '', hash = '' } = location;
+        render() {
+            // Create a functional wrapper to use hooks
+            const RouterHooksWrapper = () => {
+                const location = useLocation();
+                const params = useParams();
 
-        const path = pathname + search + hash;
+                const { pathname = '/', search = '', hash = '' } = location;
+                const path = pathname + search + hash;
 
-        const match = {
-                url: globalThis.location.origin + path,
-                path,
-                params
-            },
-            query = parseURLData(search);
+                const match = {
+                    url: globalThis.location.origin + path,
+                    path,
+                    params
+                };
+                const query = parseURLData(search);
 
-        return <Class {...{ location, match, query }} />;
+                const routerProps = { location, match, query };
+
+                // Create original component with enhanced props
+                return React.createElement(Class, {
+                    ...this.props,
+                    ...routerProps
+                });
+            };
+
+            return React.createElement(RouterHooksWrapper);
+        }
     };
+
+    // Copy static properties from original class
+    Object.getOwnPropertyNames(Class).forEach(key => {
+        if (key !== 'length' && key !== 'name' && key !== 'prototype') {
+            (EnhancedClass as any)[key] = (Class as any)[key];
+        }
+    });
+
+    return EnhancedClass as unknown as T;
 }
