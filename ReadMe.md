@@ -8,10 +8,14 @@
 
 [![Demo](https://codesandbox.io/static/img/play-codesandbox.svg)][4]
 
+## Preview
+
+https://idea2app.github.io/React-Router-class-tools/preview/
+
 ## Feature
 
 - [x] `withRouter()` function
-- [ ] `withRouter()` decorator
+- [x] `withRouter()` decorator
 - [x] `RouteComponentProps`
 - [ ] `this.props.history`
 - [x] `this.props.location`
@@ -25,9 +29,14 @@
 import { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
 
-class RoutePage extends PureComponent<
-    RouteComponentProps<{ id: string }, {}, { extra: number }>
-> {
+type RoutePageProps = RouteComponentProps<
+    { id: string },
+    {},
+    { extra: number }
+>;
+
+@withRouter
+export class RoutePage extends PureComponent<RoutePageProps> {
     render() {
         const { id } = this.props.match.params,
             { extra } = this.props.query;
@@ -40,7 +49,6 @@ class RoutePage extends PureComponent<
         );
     }
 }
-export default withRouter(RoutePage);
 ```
 
 ## Reference

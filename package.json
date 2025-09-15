@@ -1,6 +1,6 @@
 {
     "name": "react-router-class-tools",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "license": "LGPL-3.0",
     "author": "shiy2008@gmail.com",
     "description": "Class Component utilities for React Router 6+",
@@ -33,16 +33,21 @@
         "react-router-dom": ">=6"
     },
     "devDependencies": {
+        "@parcel/config-default": "~2.15.4",
         "@parcel/packager-ts": "~2.15.4",
+        "@parcel/transformer-typescript-tsc": "~2.15.4",
         "@parcel/transformer-typescript-types": "~2.15.4",
         "@types/node": "^22.18.3",
         "@types/react": "^19.1.13",
+        "@types/react-dom": "^19.1.9",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.6",
         "parcel": "~2.15.4",
         "prettier": "^3.6.2",
         "react": "^19.1.1",
+        "react-dom": "^19.1.1",
         "react-router-dom": "^7.9.1",
+        "rimraf": "^6.0.1",
         "typedoc": "^0.28.1",
         "typedoc-plugin-mdn-links": "^5.0.9",
         "typescript": "~5.9.2"
@@ -70,12 +75,17 @@
             "optimize": true
         }
     },
+    "@parcel/resolver-default": {
+        "packageExports": true
+    },
     "scripts": {
         "prepare": "husky",
         "test": "lint-staged",
+        "preview": "cd test/  &&  rimraf ../.parcel-cache/ dist/  &&  parcel --open",
+        "pack-preview": "cd test/  &&  rimraf ../.parcel-cache/ dist/  &&  parcel build --public-url=. --dist-dir=../docs/preview/",
         "pack-code": "rm -rf dist/  &&  parcel build source/index.tsx",
         "pack-docs": "rm -rf docs/  &&  typedoc source/",
-        "build": "npm run pack-code  &&  npm run pack-docs",
+        "build": "npm run pack-code  &&  npm run pack-docs  &&  npm run pack-preview",
         "prepublishOnly": "npm test  &&  npm run build"
     }
 }
