@@ -100,43 +100,6 @@ export const withRouter = <
     class ComponentWithRouter extends (Class as Constructor<Component<P>> & C) {
         static WrappedComponent = Class;
         static displayName = `withRouter(${Class.displayName || Class.name})`;
-
-        static getDerivedStateFromProps(
-            nextProps: Readonly<P>,
-            prevState: Readonly<{}>
-        ) {
-            return {};
-        }
-
-        static getDerivedStateFromError(error: Error) {}
-
-        state: Readonly<{}> = {};
-
-        componentDidMount() {}
-
-        getSnapshotBeforeUpdate(
-            prevProps: Readonly<P>,
-            prevState: Readonly<{}>
-        ) {}
-
-        shouldComponentUpdate(
-            nextProps: Readonly<P>,
-            nextState: Readonly<{}>,
-            nextContext: any
-        ) {
-            return true;
-        }
-
-        componentDidUpdate(
-            prevProps: Readonly<P>,
-            prevState: Readonly<{}>,
-            snapshot?: any
-        ) {}
-
-        componentDidCatch(error: Error, errorInfo: ErrorInfo) {}
-
-        componentWillUnmount() {}
-
         render() {
             return <HooksWrapper ClassComponent={Class} {...this.props} />;
         }
