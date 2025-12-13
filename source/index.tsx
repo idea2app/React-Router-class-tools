@@ -36,7 +36,7 @@ export interface RouteComponentProps<
 
 const HooksWrapper: FC<
     PropsWithChildren<{ ClassComponent: ComponentClass }>
-> = ({ ClassComponent, children, ...restProps }) => {
+> = ({ ClassComponent, ...props }) => {
     const location = useLocation(),
         params = useParams();
 
@@ -51,11 +51,7 @@ const HooksWrapper: FC<
         },
         query = parseURLData(search);
 
-    return (
-        <ClassComponent
-            {...{ location, match, query, children, ...restProps }}
-        />
-    );
+    return <ClassComponent {...{ location, match, query, ...props }} />;
 };
 
 /**
