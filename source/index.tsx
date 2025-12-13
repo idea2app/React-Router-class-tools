@@ -1,6 +1,12 @@
 import { Constructor, parseURLData } from 'web-utility';
 import { Location } from 'history';
-import { Component, ComponentClass, ErrorInfo, FC } from 'react';
+import {
+    Component,
+    ComponentClass,
+    ErrorInfo,
+    FC,
+    PropsWithChildren
+} from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 // Types come from https://cdn.jsdelivr.net/npm/@types/react-router/index.d.ts
@@ -28,9 +34,9 @@ export interface RouteComponentProps<
     staticContext?: Context;
 }
 
-const HooksWrapper: FC<{ ClassComponent: ComponentClass }> = ({
-    ClassComponent
-}) => {
+const HooksWrapper: FC<
+    PropsWithChildren<{ ClassComponent: ComponentClass }>
+> = ({ ClassComponent, children, ...restProps }) => {
     const location = useLocation(),
         params = useParams();
 
@@ -45,7 +51,11 @@ const HooksWrapper: FC<{ ClassComponent: ComponentClass }> = ({
         },
         query = parseURLData(search);
 
-    return <ClassComponent {...{ location, match, query }} />;
+    return (
+        <ClassComponent
+            {...{ location, match, query, children, ...restProps }}
+        />
+    );
 };
 
 /**
@@ -132,6 +142,6 @@ export const withRouter = <
         componentWillUnmount() {}
 
         render() {
-            return <HooksWrapper ClassComponent={Class} />;
+            return <HooksWrapper ClassComponent={Class} {...this.props} />;
         }
     };
