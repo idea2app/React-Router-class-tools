@@ -14,6 +14,7 @@ class PageWithRouterFunction extends Component<
     }
 > {
     state: Readonly<State> = { count: 0 };
+
     componentDidMount() {
         this.setState({ count: this.state.count + 1 });
     }
