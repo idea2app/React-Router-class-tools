@@ -26,31 +26,31 @@
     },
     "dependencies": {
         "history": "^5.3.0",
-        "web-utility": "^4.6.0"
+        "web-utility": "^4.6.4"
     },
     "peerDependencies": {
         "react": ">=16",
         "react-router-dom": ">=6"
     },
     "devDependencies": {
-        "@parcel/config-default": "~2.15.4",
-        "@parcel/packager-ts": "~2.15.4",
-        "@parcel/transformer-typescript-tsc": "~2.15.4",
-        "@parcel/transformer-typescript-types": "~2.15.4",
-        "@types/node": "^22.18.3",
-        "@types/react": "^19.1.13",
-        "@types/react-dom": "^19.1.9",
+        "@parcel/config-default": "~2.16.3",
+        "@parcel/packager-ts": "~2.16.3",
+        "@parcel/transformer-typescript-tsc": "~2.16.3",
+        "@parcel/transformer-typescript-types": "~2.16.3",
+        "@types/node": "^22.19.3",
+        "@types/react": "^19.2.7",
+        "@types/react-dom": "^19.2.3",
         "husky": "^9.1.7",
-        "lint-staged": "^16.1.6",
-        "parcel": "~2.15.4",
-        "prettier": "^3.6.2",
-        "react": "^19.1.1",
-        "react-dom": "^19.1.1",
-        "react-router-dom": "^7.9.1",
-        "rimraf": "^6.0.1",
-        "typedoc": "^0.28.1",
-        "typedoc-plugin-mdn-links": "^5.0.9",
-        "typescript": "~5.9.2"
+        "lint-staged": "^16.2.7",
+        "parcel": "~2.16.3",
+        "prettier": "^3.7.4",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "react-router-dom": "^7.10.1",
+        "rimraf": "^6.1.2",
+        "typedoc": "^0.28.15",
+        "typedoc-plugin-mdn-links": "^5.0.10",
+        "typescript": "~5.9.3"
     },
     "pnpm": {
         "onlyBuiltDependencies": [

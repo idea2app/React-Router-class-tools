@@ -100,6 +100,7 @@ export const withRouter = <
     class ComponentWithRouter extends (Class as Constructor<Component<P>> & C) {
         static WrappedComponent = Class;
         static displayName = `withRouter(${Class.displayName || Class.name})`;
+
         render() {
             return <HooksWrapper ClassComponent={Class} {...this.props} />;
         }
