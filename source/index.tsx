@@ -97,9 +97,48 @@ export const withRouter = <
     Class: C,
     context?: ClassDecoratorContext<C>
 ) =>
+    // Inheriting from the Original Class is for keeping the Decorated Class Shape,
+    // which is required for Semantic & Performance Optimization of JS runtimes,
+    // and React lifecycle methods should be disabled to avoid duplicated calls.
     class ComponentWithRouter extends (Class as Constructor<Component<P>> & C) {
         static WrappedComponent = Class;
         static displayName = `withRouter(${Class.displayName || Class.name})`;
+
+        static getDerivedStateFromProps(
+            nextProps: Readonly<P>,
+            prevState: Readonly<{}>
+        ) {
+            return {};
+        }
+
+        static getDerivedStateFromError(error: Error) {}
+
+        state: Readonly<{}> = {};
+
+        componentDidMount() {}
+
+        getSnapshotBeforeUpdate(
+            prevProps: Readonly<P>,
+            prevState: Readonly<{}>
+        ) {}
+
+        shouldComponentUpdate(
+            nextProps: Readonly<P>,
+            nextState: Readonly<{}>,
+            nextContext: any
+        ) {
+            return true;
+        }
+
+        componentDidUpdate(
+            prevProps: Readonly<P>,
+            prevState: Readonly<{}>,
+            snapshot?: any
+        ) {}
+
+        componentDidCatch(error: Error, errorInfo: ErrorInfo) {}
+
+        componentWillUnmount() {}
 
         render() {
             return <HooksWrapper ClassComponent={Class} {...this.props} />;
