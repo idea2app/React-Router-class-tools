@@ -21,11 +21,29 @@ documentReady.then(() =>
                 <Route path="/" element={<h1>Home Page</h1>} />
                 <Route
                     path="/with/router/function/:order"
-                    element={<PageWithRouterFunction />}
+                    element={
+                        <PageWithRouterFunction
+                            string="this is a string"
+                            node={<div>this is a node</div>}
+                        >
+                            <p>
+                                here is the children of PageWithRouterFunction
+                            </p>
+                        </PageWithRouterFunction>
+                    }
                 />
                 <Route
                     path="/with/router/decorator/:order"
-                    element={<PageWithRouterDecorator />}
+                    element={
+                        <PageWithRouterDecorator
+                            string="this is a string"
+                            node={<div>this is a node</div>}
+                        >
+                            <p>
+                                here is the children of PageWithRouterDecorator
+                            </p>
+                        </PageWithRouterDecorator>
+                    }
                 />
             </Routes>
         </HashRouter>
